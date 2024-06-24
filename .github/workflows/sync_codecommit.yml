@@ -33,6 +33,8 @@ jobs:
       - name: Add AWS CodeCommit remote
         run: git remote add codecommit https://git-codecommit.us-east-1.amazonaws.com/v1/repos/click_analytics
 
-      - name: Push to CodeCommit
+      - name: Sync and Push to CodeCommit
         run: |
+          git fetch codecommit
+          git rebase codecommit/main
           git push codecommit main
