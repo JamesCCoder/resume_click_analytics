@@ -33,8 +33,13 @@ jobs:
       - name: Add AWS CodeCommit remote
         run: git remote add codecommit https://git-codecommit.us-east-1.amazonaws.com/v1/repos/click_analytics
 
-      - name: Sync and Push to CodeCommit
+      - name: Fetch from CodeCommit
+        run: git fetch codecommit
+
+      - name: Rebase with CodeCommit main
         run: |
-          git fetch codecommit
-          git rebase codecommit/main
-          git push codecommit main
+          git rebase codecommit/main || (git rebase --abort && echo 'Rebase conflict. Please resolve conflicts manually.')
+
+      - name: Push to CodeCommit
+        if: success()
+        run: git push codecommit main || echo 'Push failed. Please resolve issues manually.'
