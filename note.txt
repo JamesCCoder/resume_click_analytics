@@ -24,6 +24,7 @@ git push codecommit main
 
 6. 使用 GitHub Actions 自动推送到 CodeCommit
 
+git push codecommit main
 
 !!BUG:
 git fetch codecommit
