@@ -20,8 +20,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Install Git
-        run: sudo apt-get install -y git
+      - name: Install AWS CLI and Git
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli git
+          
+      - name: Configure Git to use AWS CodeCommit credential helper
+        run: |
+          git config --global credential.helper '!aws codecommit credential-helper $@'
+          git config --global credential.UseHttpPath true
 
       - name: Add AWS CodeCommit remote
         run: git remote add codecommit https://git-codecommit.us-east-1.amazonaws.com/v1/repos/click_analytics
