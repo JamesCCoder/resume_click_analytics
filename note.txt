@@ -25,5 +25,7 @@ git push codecommit main
 6. 使用 GitHub Actions 自动推送到 CodeCommit
 
 
-test
-test
+!!BUG:
+git fetch codecommit
+
+hint:Keychain Access
