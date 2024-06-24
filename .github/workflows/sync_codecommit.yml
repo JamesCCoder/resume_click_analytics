@@ -24,7 +24,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y awscli git
-          
+
       - name: Configure Git to use AWS CodeCommit credential helper
         run: |
           git config --global credential.helper '!aws codecommit credential-helper $@'
@@ -33,6 +33,8 @@ jobs:
       - name: Add AWS CodeCommit remote
         run: git remote add codecommit https://git-codecommit.us-east-1.amazonaws.com/v1/repos/click_analytics
 
-      - name: Push to CodeCommit
+      - name: Sync and Push to CodeCommit
         run: |
+          git fetch codecommit
+          git reset --hard codecommit/main
           git push codecommit main --force

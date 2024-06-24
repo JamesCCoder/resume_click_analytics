@@ -1,0 +1,25 @@
+1. 安装和配置 AWS CLI
+确保已安装 AWS CLI，并使用正确的凭证进行配置：
+aws configure
+
+2. 在 AWS CodeCommit 中创建一个仓库
+在 AWS Management Console 中，导航到 CodeCommit 并创建一个新仓库。记下仓库的克隆 URL，例如：
+
+https://git-codecommit.us-east-1.amazonaws.com/v1/repos/your-repo-name
+
+3. 在本地仓库中添加 CodeCommit 远程仓库
+在您的本地 Git 仓库中，添加 CodeCommit 远程仓库：
+
+git remote add codecommit https://git-codecommit.us-east-1.amazonaws.com/v1/repos/your-repo-name
+
+4. 配置 Git 使用 CodeCommit 凭证助手
+
+git config --global credential.helper '!aws codecommit credential-helper $@'
+git config --global credential.UseHttpPath true
+
+5. 推送代码到 CodeCommit
+现在您可以将代码推送到 CodeCommit：
+
+git push codecommit main
+
+6. 使用 GitHub Actions 自动推送到 CodeCommit
