@@ -37,4 +37,4 @@ jobs:
         run: |
           git fetch codecommit
           git reset --hard codecommit/main
-          git push codecommit main --force
+          git push codecommit main
