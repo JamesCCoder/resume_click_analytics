@@ -3,7 +3,7 @@ name: Sync to AWS CodeCommit
 on:
   push:
     branches:
-      - main  # 可以根据需要修改为其他分支
+      - main
 
 jobs:
   sync:
@@ -42,4 +42,4 @@ jobs:
 
       - name: Push to CodeCommit
         if: success()
-        run: git push codecommit main || echo 'Push failed. Please resolve issues manually.'
+        run: git push codecommit main --force || echo 'Push failed. Please resolve issues manually.'
